@@ -16,7 +16,11 @@ class MyClient(discord.Client):
         if message.content == 'ping':
             await message.channel.send('pong')
 
-        if message.content.startswith('https://www.cert.ssi.gouv.fr/alerte/feed/'):
+        if message.content.startswith('rss'):
+            for list in flux :
+                await message.channel.send(list)
+                if message.content.startswith('1'):
+                    await message.channel.send(list[1])
             await message.channel.send(feed_parser(message.content))
 
 client = MyClient()
