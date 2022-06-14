@@ -1,8 +1,7 @@
-from inspect import ArgSpec
-from re import M
 import discord
 from discord.ext import commands
 import feedparser
+from token import token
 
 
 default_intents = discord.Intents.default()
@@ -35,4 +34,4 @@ class MyClient(discord.Client):
             on_message(message.content, *args)
 
 client = MyClient()
-client.run('OTgzMzc2OTkwMDA0NDQ1MjQ0.G4lDaB.ABDR585VOIcnDxcxr82iyIB1qlO3MPxQ1RhDQA')
+client.run(token)
