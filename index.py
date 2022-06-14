@@ -1,16 +1,16 @@
 import discord
 from discord.ext import commands
 import feedparser
-from token import token
-
+import sys
 
 default_intents = discord.Intents.default()
 default_intents.members = True
 
-import sys
 sys.path.append('flux.py')
-from flux import list_flux
+sys.path.append('token.py')
 
+from token_id import token_id
+from flux import list_flux
 from function.feed_parser import feed_parser
 
 class MyClient(discord.Client):
@@ -34,4 +34,4 @@ class MyClient(discord.Client):
             on_message(message.content, *args)
 
 client = MyClient()
-client.run(token)
+client.run(token_id)
