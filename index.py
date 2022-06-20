@@ -28,10 +28,20 @@ class MyClient(discord.Client):
             await message.send(f"{content}")
 
         if message.content.startswith('rss'):
-            #await message.channel.send(feed_parser())
-            args = message.content.split()
-            args.shift()
-            on_message(message.content, *args)
+            await message.channel.send("Entrez le flux que vous voulez lire :")
+            for flux in list_flux:
+                await message.channel.send(f"{flux} : {list_flux[flux]}")
+
+            flux_choice = await self.wait_for('message', check=lambda message: message.author == message.author)
+
+            if flux_choice.content in list_flux:
+                await message.channel.send("Vous avez choisi le flux : {}".format(flux_choice.content))
+                await message.channel.send("Veuillez patienter...")
+                title, link = feed_parser(list_flux[flux_choice.content])
+                await message.channel.send("{} \n{}".format(title, link))
+            else:
+                await message.channel.send("Vous avez choisi le flux n°{}".format(flux_choice.content))
+                await message.channel.send(list_flux[id])
 
 client = MyClient()
 client.run(token_id)
