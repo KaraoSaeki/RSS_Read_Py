@@ -69,13 +69,11 @@ class MyClient(discord.Client):
             await message.channel.send("{} \n{}".format(title, link))
 
         if message.content.startswith('help'):
-            await message.channel.send("Voici la liste des commandes :")
-            await message.channel.send("rss : affiche la liste des flux")
-            await message.channel.send("add : ajoute un flux")
-            await message.channel.send("remove : supprime un flux")
-            await message.channel.send("list : affiche la liste des flux")
-            await message.channel.send("help : affiche la liste des commandes")
-            await message.channel.send("ping : pong")
+            embed = discord.Embed(color=0x00ff00)
+            embed.add_field(name="rss", value="affiche la liste des flux", inline=False)
+            embed.add_field(name="rss", value="affiche la liste des flux", inline=False)
+
+            await message.channel.send(message.channel, embed=embed)
         
         if message.content.startswith('exit'):
             await message.channel.send("Au revoir !")
