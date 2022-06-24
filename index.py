@@ -37,7 +37,6 @@ class MyClient(discord.Client):
             await message.channel.send(embed=embed)
 
             flux_choice = await self.wait_for('message', check=lambda message: message.author == message.author)
-
             choix = int(flux_choice.content)
             if choix in list_flux:
                 await message.channel.send("Vous avez choisi le flux : {}".format(choix))
