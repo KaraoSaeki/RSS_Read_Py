@@ -11,7 +11,7 @@ default_intents.members = True
 from token_id import token_id
 from flux import list_flux, list_activated_flux
 from commande.list_commande import commande
-from commande.boucle import reading_rss
+from commande.boucle import boucle_active, reading_rss
 from function.feed_parser import feed_parser
 
 
@@ -126,6 +126,10 @@ class MyClient(discord.Client):
                 list_activated_flux[choix] = True
             else:
                 await message.channel.send("Votre choix n'est pas dans la liste")
+
+        if message.content.startswith('boucle'):
+            boucle_active()
+            message.channel.send("La boucle est activée")
 
 
 client = MyClient()
