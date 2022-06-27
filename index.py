@@ -129,7 +129,7 @@ class MyClient(discord.Client):
 
         if message.content.startswith('boucle'):
             boucle_active()
-            message.channel.send("La boucle est activée")
+            await message.channel.send("La boucle est activée")
 
 
 client = MyClient()
